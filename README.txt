@@ -1,21 +1,15 @@
-Brian Créa - Webapp PWA
+Brian Créa - version PWA PLUS
 
-Contenu :
-- index.html
-- manifest.webmanifest
-- service-worker.js
-- icon-192.png
-- icon-512.png
-
-Utilisation :
-1. Dézipper le dossier.
-2. Héberger sur GitHub Pages ou Netlify.
-3. Ouvrir l'application dans Chrome sur téléphone.
-4. Utiliser le bouton "Installer l'application".
-
-Fonctions :
-- Devis / Facture
+Nouveautés :
+- Logo dans le PDF
+- Conversion Devis -> Facture
+- Partage mail
+- Partage WhatsApp
 - Numéros automatiques
 - Historique local
-- Génération PDF
-- PWA installable
+- Installation téléphone (PWA)
+
+Hébergement :
+- GitHub Pages
+- Netlify
+- Vercel

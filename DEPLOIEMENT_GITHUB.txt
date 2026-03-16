@@ -1,0 +1,1 @@
+Dézippe puis envoie tout à la racine du dépôt GitHub. Ensuite active GitHub Pages sur main / root.
