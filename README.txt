@@ -1,20 +1,14 @@
-BALLAY Créa V2 PRO
+BALLAY Créa V3 Firebase
 
-Contenu :
-- index.html
-- manifest.json
-- service-worker.js
-- logo-ballay-crea.png
-- icon-192.png
-- icon-512.png
-- icon-maskable-512.png
+Étapes :
+1. Active Authentication > Anonymous dans Firebase
+2. Crée Firestore Database
+3. Colle firestore-rules.txt dans Rules
+4. Envoie tous les fichiers sur GitHub Pages
+5. Fais Ctrl + F5
 
-Fonctions :
-- application installable
-- gros boutons centrés
-- logo plus gros et centré
-- devis / facture avec tableau
+Cette version inclut :
+- historique synchronisé PC + téléphone
 - numérotation automatique
-- historique
 - PDF avec logo et couleurs du logo
-- mention micro-entreprise
+- gros boutons centrés
