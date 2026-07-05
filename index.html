@@ -41,7 +41,7 @@
         <div class="subtitle">homme toutes mains</div>
         <div id="syncBadge" class="sync-badge">Synchronisation Firebase…</div>
         <div class="company-box">
-          <strong>BALLAY Créa</strong><br>BALLAY Brian<br>90 rue du soleil levant<br>76230 Bois-Guillaume<br>ballay.brian@gmail.com<br>06 34 09 08 20<br><strong>SIRET : 89897316900029</strong><br>TVA non applicable, art. 293B du CGI<br>Garantie décennale non applicable
+          <strong>BALLAY Créa</strong><br>BALLAY Brian<br>90 rue du soleil levant<br>76230 Bois-Guillaume<br>ballay.brian@gmail.com<br>06 34 09 08 20<br><strong>SIRET : 89897316900029</strong><br>TVA non applicable, art. L.223-3 du CIBS
         </div>
         <div class="big-actions">
           <button class="big-btn primary" onclick="startDocument('devis')">📄 Nouveau devis</button>
@@ -74,6 +74,7 @@
           <div><label for="clientAddress">Adresse</label><input id="clientAddress" placeholder="Adresse du client"></div>
           <div><label for="docDate">Date</label><input id="docDate" type="date"></div>
           <div><label for="dueDate">Date d'échéance / validité</label><input id="dueDate" type="date"></div>
+<div><label for="docNumberInput">Numéro du document</label><input id="docNumberInput" oninput="updateDocumentNumberFromInput()"></div>
         </div>
         <div style="margin-top:14px;"><label for="notes">Notes / conditions</label><textarea id="notes" placeholder="Exemple : acompte demandé, règlement à réception, travaux sous réserve de visite..."></textarea></div>
       </div>
@@ -83,7 +84,7 @@
         <div id="tasksContainer"></div>
         <div class="summary">
           <div class="box">Sous-total<strong id="subTotalHt">0,00 €</strong></div>
-          <div class="box">TVA non applicable<strong>art. 293B CGI, Garantie décennale non applicable.</strong></div>
+          <div class="box">TVA non applicable<strong>art. L.223-3 du CIBS</strong></div>
           <div class="box">Total à payer<strong id="totalTtc">0,00 €</strong></div>
         </div>
       </div>

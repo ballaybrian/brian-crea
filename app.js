@@ -58,7 +58,7 @@ function collectData() {
   const subTotal=tasks.reduce((sum,t)=>sum+t.total,0);
   return {
     type:state.currentType,
-    number:state.currentNumber || document.getElementById("docNumberPill").textContent.replace("N° ",""),
+    number:(document.getElementById("docNumberInput")?.value||state.currentNumber||document.getElementById("docNumberPill").textContent.replace("N° ","")),
     date:document.getElementById("docDate").value,
     dueDate:document.getElementById("dueDate").value,
     notes:document.getElementById("notes").value.trim(),
@@ -100,7 +100,7 @@ function renderPreview() {
     <table><thead><tr><th>Désignation</th><th>Qté</th><th class="right">PU</th><th class="right">Total</th></tr></thead><tbody>${rows}</tbody></table>
     <div style="margin-top:16px;max-width:360px;margin-left:auto;"><table><tr><td>Sous-total</td><td class="right">${formatEuro(data.subTotal)}</td></tr><tr><td><strong>Total à payer</strong></td><td class="right"><strong>${formatEuro(data.total)}</strong></td></tr></table></div>
     <div style="margin-top:18px;"><strong>Notes</strong><br>${escapeHtml(data.notes || "Aucune note.")}</div>
-    <div class="legal">TVA non applicable, art. 293B du CGI</div>`;
+    <div class="legal">TVA non applicable, art. L.223-3 du CIBS</div>`;
 }
 
 function resetDocument() {
@@ -159,7 +159,7 @@ function generatePdfFromData(data) {
   }
   y+=6; const totalsX=130; doc.setFont("helvetica","bold"); doc.text("Sous-total :",totalsX,y); doc.text(formatEuro(data.subTotal), pageWidth - 14, y, {align:"right"}); y+=8; doc.setFontSize(12); doc.text("Total à payer :", totalsX, y); doc.text(formatEuro(data.total), pageWidth - 14, y, {align:"right"});
   y+=12; doc.setFontSize(10); doc.setFont("helvetica","bold"); doc.text("Notes :",14,y); y+=5; doc.setFont("helvetica","normal"); const noteLines=doc.splitTextToSize(data.notes || "Aucune note.",180); doc.text(noteLines,14,y);
-  doc.setFontSize(9); doc.text("TVA non applicable, art. 293B du CGI",14,285); doc.setFont("helvetica","italic"); doc.text("Signature :",120,285); doc.line(145,285,195,285);
+  doc.setFontSize(9); doc.text("TVA non applicable, art. L.223-3 du CIBS",14,285); doc.setFont("helvetica","italic"); doc.text("Signature :",120,285); doc.line(145,285,195,285);
   doc.save(`${data.number}.pdf`);
 }
 
@@ -183,6 +183,8 @@ async function initApp() {
 }
 
 if("serviceWorker" in navigator) window.addEventListener("load", ()=>navigator.serviceWorker.register("./service-worker.js").catch(()=>{}));
-window.startDocument = function(type) { state.currentType=type; state.currentNumber=getNextNumber(type); document.getElementById("editorTitle").textContent = type==="devis"?"Créer un devis":"Créer une facture"; document.getElementById("docNumberPill").textContent = `N° ${state.currentNumber}`; document.getElementById("docDate").value = todayISO(); showScreen("editorScreen"); showPanel("clientPanel"); if(!document.querySelector(".task-row")) addTask(); };
+window.startDocument = function(type) { state.currentType=type; state.currentNumber=getNextNumber(type); document.getElementById("editorTitle").textContent = type==="devis"?"Créer un devis":"Créer une facture"; document.getElementById("docNumberPill").textContent = `N° ${state.currentNumber}`; document.getElementById("docDate").value = todayISO(); if(document.getElementById("docNumberInput")) document.getElementById("docNumberInput").value=state.currentNumber; showScreen("editorScreen"); showPanel("clientPanel"); if(!document.querySelector(".task-row")) addTask(); };
 window.goHome = goHome; window.showPanel = showPanel; window.addTask = addTask; window.removeTask = removeTask; window.updateTotals = updateTotals; window.renderPreview = renderPreview; window.resetDocument = resetDocument; window.saveCurrentToHistory = saveCurrentToHistory; window.openHistory = openHistory; window.refreshHistory = refreshHistory; window.loadFromHistory = loadFromHistory; window.deleteHistoryItem = deleteHistoryItem; window.generatePDF = generatePDF; window.downloadHistoryPdf = downloadHistoryPdf;
 document.addEventListener("DOMContentLoaded", initApp);
+
+window.updateDocumentNumberFromInput=function(){const i=document.getElementById('docNumberInput');if(i){state.currentNumber=i.value;document.getElementById('docNumberPill').textContent='N° '+i.value;}};
